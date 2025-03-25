@@ -13,7 +13,8 @@ pub fn main() !void {
     var bw = std.io.bufferedWriter(stdout_file);
     const stdout = bw.writer();
 
-    try stdout.print("Run `zig build test` to run the tests.\n", .{});
+    try stdout.print("d01.1: {d}\n", .{lib.get_solution_1()});
+    try stdout.print("d01.2: {d}\n", .{lib.get_solution_2()});
 
     try bw.flush(); // Don't forget to flush!
 }
