@@ -3,9 +3,6 @@
 //! is to delete this file and start with root.zig instead.
 
 pub fn main() !void {
-    // Prints to stderr (it's a shortcut based on `std.io.getStdErr()`)
-    std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
-
     // stdout is for the actual output of your application, for example if you
     // are implementing gzip, then only the compressed bytes should be sent to
     // stdout, not any debugging messages.
@@ -15,6 +12,9 @@ pub fn main() !void {
 
     try stdout.print("d01.1: {d}\n", .{lib.get_solution_1()});
     try stdout.print("d01.2: {d}\n", .{lib.get_solution_2()});
+
+    try stdout.print("d02.1: {d}\n", .{d02.get_solution_1()});
+    try stdout.print("d02.2: {d}\n", .{d02.get_solution_2()});
 
     try bw.flush(); // Don't forget to flush!
 }
@@ -44,3 +44,4 @@ const std = @import("std");
 
 /// This imports the separate module containing `root.zig`. Take a look in `build.zig` for details.
 const lib = @import("aoc19_lib");
+const d02 = @import("d02");
