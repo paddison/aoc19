@@ -10,11 +10,13 @@ pub fn main() !void {
     var bw = std.io.bufferedWriter(stdout_file);
     const stdout = bw.writer();
 
-    try stdout.print("d01.1: {d}\n", .{lib.get_solution_1()});
-    try stdout.print("d01.2: {d}\n", .{lib.get_solution_2()});
+    try stdout.print("d01.1: {d}\n", .{d01.get_solution_1()});
+    try stdout.print("d01.2: {d}\n", .{d01.get_solution_2()});
 
     try stdout.print("d02.1: {d}\n", .{d02.get_solution_1()});
     try stdout.print("d02.2: {d}\n", .{d02.get_solution_2()});
+
+    try stdout.print("d03.1: {d}\n", .{d03.get_solution_1()});
 
     try bw.flush(); // Don't forget to flush!
 }
@@ -27,7 +29,7 @@ test "simple test" {
 }
 
 test "use other module" {
-    try std.testing.expectEqual(@as(i32, 150), lib.add(100, 50));
+    try std.testing.expectEqual(@as(i32, 150), d01.add(100, 50));
 }
 
 test "fuzz example" {
@@ -43,5 +45,6 @@ test "fuzz example" {
 const std = @import("std");
 
 /// This imports the separate module containing `root.zig`. Take a look in `build.zig` for details.
-const lib = @import("d02");
+const d01 = @import("d02");
 const d02 = @import("d02");
+const d03 = @import("d03");

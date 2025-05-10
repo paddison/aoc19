@@ -38,6 +38,12 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
+    const d03 = b.createModule(.{
+        .root_source_file = b.path("src/d03.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+
     // We will also create a module for our other entry point, 'main.zig'.
     const exe_mod = b.createModule(.{
         // `root_source_file` is the Zig "entry point" of the module. If a module
@@ -52,8 +58,9 @@ pub fn build(b: *std.Build) void {
     // Modules can depend on one another using the `std.Build.Module.addImport` function.
     // This is what allows Zig source code to use `@import("foo")` where 'foo' is not a
     // file path. In this case, we set up `exe_mod` to import `lib_mod`.
-    exe_mod.addImport("d02", d01);
+    exe_mod.addImport("d01", d01);
     exe_mod.addImport("d02", d02);
+    exe_mod.addImport("d03", d03);
 
     // This creates another `std.Build.Step.Compile`, but this one builds an executable
     // rather than a static library.
